@@ -19,6 +19,8 @@ PKG_FILES = FileList['lib/**/*.rb',
 RDOC_OPTIONS = ['-S', '-w 2', '-N', '-Axmlsubel_mult=XML Subelement Collection', 
                 '-Axmlsubel=XML Subelement', '-Axmlattr=XML Attribute']
 RDOC_EXTRA_FILES = ['README']
+CODE_FILES = 'lib/**/*.rb'
+TEST_FILES = 'test/**/*.rb'
 
 spec = Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
@@ -57,8 +59,35 @@ end
 Rake::RDocTask.new do |rd|
   rd.main = "README"
   rd.name = :docs
-  rd.rdoc_files.include(RDOC_EXTRA_FILES, "lib/**/*.rb")
+  rd.rdoc_files.include(RDOC_EXTRA_FILES, CODE_FILES)
   rd.rdoc_dir = 'web/doc'
   rd.title = PKG_NAME+' API'
   rd.options = RDOC_OPTIONS
+end
+
+task :stats do
+  code_code, code_comments = count_lines(FileList[CODE_FILES])
+  test_code, test_comments = count_lines(FileList[TEST_FILES])
+  
+  puts "Code lines: #{code_code} code, #{code_comments} comments"
+  puts "Test lines: #{test_code} code, #{test_comments} comments"
+  
+  ratio = test_code.to_f/code_code.to_f
+  
+  puts "Code to test ratio: 1:%.2f" % ratio
+end
+
+def count_lines(files)
+  code = 0
+  comments = 0
+  files.each do |f| 
+    File.open(f).each do |line|
+      if line.strip[0] == '#'[0]
+        comments += 1
+      else
+        code += 1
+      end
+    end
+  end
+  [code, comments]
 end
