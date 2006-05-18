@@ -1,5 +1,5 @@
 PKG_NAME = 'eadcodec'
-PKG_VERSION = '0.0.1'
+PKG_VERSION = '0.0.2'
 
 require 'rake'
 require 'rake/testtask'
@@ -24,7 +24,7 @@ spec = Gem::Specification.new do |s|
   s.author = 'Pedro Côrte-Real'
   s.email = 'pedrocr@gmail.com'
   s.requirements << 'xmlcodec'
-  s.add_dependency('xmlcodec', '>= 0.0.1')
+  s.add_dependency('xmlcodec', '>= 0.0.2')
   s.require_path = 'lib'
   s.autorequire = 'rake'
   s.files = PKG_FILES
@@ -51,7 +51,7 @@ Rake::RDocTask.new do |rd|
   rd.main = "README"
   rd.name = :docs
   rd.rdoc_files.include("README", "lib/**/*.rb")
-  rd.rdoc_dir = 'doc'
+  rd.rdoc_dir = 'web/doc'
   rd.title = PKG_NAME+' API"'
   rd.options = ['-S', '-w 2', '-N']
 end
