@@ -52,6 +52,6 @@ Rake::RDocTask.new do |rd|
   rd.name = :docs
   rd.rdoc_files.include("README", "lib/**/*.rb")
   rd.rdoc_dir = 'web/doc'
-  rd.title = PKG_NAME+' API"'
-  rd.options = ['-S', '-w 2', '-N']
+  rd.title = PKG_NAME+' API'
+  rd.options = ['-S', '-w 2', '-N', '-Axmlsubel_mult=XML Subelement Collection', '-Axmlsubel=XML Subelement', '-Axmlattr=XML Attribute']
 end

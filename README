@@ -8,11 +8,12 @@ To import a file just do:
 
 All the file will be imported and it's whole contents loaded into memory. For 
 big files this is a problem so you should look at 
-XMLUtils::XMLStreamObjectParser instead.
+XMLCodec::XMLStreamObjectParser instead from the xmlcodec framework on which 
+this library depends on.
 
-The XMLUtils module has some nice utility classes and functions to handle any 
-kind of XML file. XMLUtils::XMLElement can be used to define an importer and 
-exporter for any XML format. XMLUtils::XMLStreamObjectParser is designed to work
+The XMLCodec module has some nice utility classes and functions to handle any 
+kind of XML file. XMLCodec::XMLElement can be used to define an importer and 
+exporter for any XML format. XMLCodec::XMLStreamObjectParser is designed to work
 with it allowing for stream parsing of XML files of arbitrary length with 
 constant memory usage while still treating elements as ruby objects.
 

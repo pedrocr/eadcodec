@@ -8,7 +8,7 @@ include REXML
 # attributes and elements have been added. Adding an element is pretty easy 
 # though.
 module EAD
-  class EADElement < XMLCodec::XMLElement
+  class EADElement < XMLCodec::XMLElement #:nodoc:
   end
   
   class EADSimpleElement < EADElement
@@ -37,34 +37,15 @@ module EAD
     def remove_level(level)
       self.c.delete(level)
     end
-
-    # Import the child levels into the element.
-    def import_xml_levels(xmlel)
-      xmlel.each_element() do |el|
-        if EAD::c_levels.index(el.name)
-          level = EAD::EADLevel.import_xml(el)
-          add_level(level)
-        end
-      end
-    end
-    
-    # Add any children that are levels to the element
-    def add_levels(children)
-      children.keys.each do |name|
-        if EAD::c_levels.index(name)
-          levels = children[name]
-          levels.each do |level|
-            add_level(level)
-          end
-        end
-      end
-    end
   end
   
   def self.sclass(name, string)
     const_set(name, Class.new(EADSimpleElement)).send(:elname, string) 
   end
   
+  # Create a bunch of classes for simple elements with just values
+  # Most of these actually can have children so they should be promoted to
+  # actual classes.
   sclass "EADOrigination", "origination"
   sclass "EADUnitTitle", "unittitle"
   sclass "EADUnitId", "unitid"
@@ -88,6 +69,8 @@ module EAD
   sclass "EADLinkGrp", "linkgrp"
   sclass "EADTitle", "title"
   
+  # The class for the 'head' element. For convenience it can be initialized
+  # with a string value that is used as the first subelement.
   class EADHead < EADElement
     elname "head"
     
@@ -98,8 +81,10 @@ module EAD
       
     xmlsubelements
     
-    def initialize(string)
-      self.subelements << string
+    def initialize(string=nil)
+      if string
+        self.subelements << string
+      end
     end
     
     def value
@@ -107,6 +92,8 @@ module EAD
     end
   end
   
+  # The class for the 'p' element. For convenience it can be initialized
+  # with a string value that is used as the first subelement.
   class EADP < EADElement
     elname "p"
     
@@ -116,8 +103,10 @@ module EAD
       
     xmlsubelements
     
-    def initialize(string)
-      self.subelements << string
+    def initialize(string=nil)
+      if string
+        self.subelements << string
+      end
     end
     
     def value
