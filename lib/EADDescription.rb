@@ -17,5 +17,6 @@ module EAD
 		xmlsubel :physdesc
 		xmlsubel :physloc
 		xmlsubel :unitdate
+		xmlsubel :langmaterial
 	end
 end

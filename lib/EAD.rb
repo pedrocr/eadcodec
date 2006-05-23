@@ -129,6 +129,7 @@ require "EADProfileDesc"
 require "EADHeader"
 require "EADBiogHist"
 require "EADDocument"
+require "EADLang"
 
 module EAD
   def self.c_levels
