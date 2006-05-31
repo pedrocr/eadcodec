@@ -30,7 +30,7 @@ spec = Gem::Specification.new do |s|
   s.author = 'Pedro Côrte-Real'
   s.email = 'pedrocr@gmail.com'
   s.requirements << 'xmlcodec'
-  s.add_dependency('xmlcodec', '>= 0.0.2')
+  s.add_dependency('xmlcodec', '>= 0.0.3')
   s.require_path = 'lib'
   s.autorequire = 'rake'
   s.files = PKG_FILES
