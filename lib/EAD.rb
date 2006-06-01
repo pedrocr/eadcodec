@@ -46,9 +46,6 @@ module EAD
   # Create a bunch of classes for simple elements with just values
   # Most of these actually can have children so they should be promoted to
   # actual classes.
-  sclass "EADOrigination", "origination"
-  sclass "EADUnitTitle", "unittitle"
-  sclass "EADUnitId", "unitid"
   sclass "EADAbstract", "abstract"
   sclass "EADPhysDesc", "physdesc"
   sclass "EADPhysLoc", "physloc"
@@ -68,6 +65,55 @@ module EAD
   sclass "EADRef", "ref"
   sclass "EADLinkGrp", "linkgrp"
   sclass "EADTitle", "title"
+
+  class EADOrigination < EADElement
+    elname "origination"
+    
+    xmlattr :altrender
+    xmlattr :audience
+    xmlattr :encodinganalog
+    xmlattr :id
+    xmlattr :label
+    
+    xmlsubelements
+  end
+
+  class EADUnitTitle < EADElement
+    elname "unittitle"
+    
+    xmlattr :altrender
+    xmlattr :audience
+    xmlattr :encodinganalog
+    xmlattr :id
+    xmlattr :label
+    xmlattr :type
+    
+    xmlsubelements
+    
+    def value
+      self.subelements[0].to_s
+    end
+  end
+  
+  class EADUnitId < EADElement
+    elname "unitid"
+    
+    xmlattr :altrender
+    xmlattr :audience
+    xmlattr :countrycode
+    xmlattr :encodinganalog
+    xmlattr :id
+    xmlattr :identifier
+    xmlattr :label
+    xmlattr :repositorycode
+    xmlattr :type
+    
+    xmlsubelements
+    
+    def value
+      self.subelements[0].to_s
+    end
+  end
   
   # The class for the 'head' element. For convenience it can be initialized
   # with a string value that is used as the first subelement.
@@ -130,6 +176,28 @@ require "EADHeader"
 require "EADBiogHist"
 require "EADDocument"
 require "EADLang"
+require 'EADExtent'
+require 'EADGeogName'
+require 'EADRepository'
+require 'EADAcqInfo'
+require 'EADChronList'
+require 'EADEvent'
+require 'EADControlAccess'
+require 'EADList'
+require 'EADLabel'
+require 'EADCustodHist'
+require 'EADFilePlan'
+require 'EADProcessInfo'
+require 'EADName'
+require 'EADDimensions'
+require 'EADArrangement'
+require 'EADContainer'
+require 'EADAltFormAvail'
+require 'EADPhysFacet'
+require 'EADMaterialSpec'
+require 'EADAppraisal'
+require 'EADOtherFindAid'
+
 
 module EAD
   def self.c_levels

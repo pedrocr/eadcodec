@@ -5,7 +5,15 @@ module EAD
   class EADArchDesc < EADElement
     elname "archdesc"
   
+    xmlattr :altrender
+    xmlattr :audience
+    xmlattr :encodinganalog
+    xmlattr :id
     xmlattr :level
+    xmlattr :otherlevel
+    xmlattr :relatedencoding
+    xmlattr :type
+    
     xmlsubel :did
     xmlsubel :bioghist
     xmlsubel :scopecontent
