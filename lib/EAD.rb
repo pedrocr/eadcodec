@@ -76,6 +76,16 @@ module EAD
     xmlattr :label
     
     xmlsubelements
+    
+    def initialize(string=nil)
+      if string
+        self.subelements << string
+      end
+    end
+    
+    def value
+      self.subelements[0].to_s
+    end
   end
 
   class EADUnitTitle < EADElement
@@ -89,6 +99,12 @@ module EAD
     xmlattr :type
     
     xmlsubelements
+    
+    def initialize(string=nil)
+      if string
+        self.subelements << string
+      end
+    end
     
     def value
       self.subelements[0].to_s
@@ -109,6 +125,12 @@ module EAD
     xmlattr :type
     
     xmlsubelements
+    
+    def initialize(string=nil)
+      if string
+        self.subelements << string
+      end
+    end
     
     def value
       self.subelements[0].to_s

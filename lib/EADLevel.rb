@@ -16,6 +16,7 @@ module EAD
 		xmlsubel :note
 		xmlsubel :relatedmaterial
 		xmlsubel_mult :c
+		xmlsubel_mult :dsc
 		
 		attr_reader :parent
 		
