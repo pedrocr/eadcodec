@@ -84,9 +84,9 @@ module EAD
     end
 
     def export(filename)
-      doc = Document.new
-      doc << XMLDecl.new("1.0", "UTF-8")
-      doc << DocType.new("ead SYSTEM", '"file:///home/pedrocr/ead.dtd"')
+      doc = REXML::Document.new
+      doc << REXML::XMLDecl.new("1.0", "UTF-8")
+      doc << REXML::DocType.new("ead SYSTEM", '"file:///home/pedrocr/ead.dtd"')
       create_xml(doc)
       output = File.open(filename, "w")
 

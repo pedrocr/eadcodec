@@ -1,6 +1,5 @@
 require "rexml/document"
 require "xmlcodec"
-include REXML
 
 # This module includes all the support for EAD import/export. The main class to
 # use is EADDocument that is a subclass of XMLUtils::XMLElement. All elements
