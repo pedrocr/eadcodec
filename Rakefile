@@ -1,5 +1,5 @@
 PKG_NAME = 'eadcodec'
-PKG_VERSION = '0.0.3'
+PKG_VERSION = '0.0.4'
 
 require 'rake'
 require 'rake/testtask'
