@@ -1,5 +1,7 @@
 module EADCodec
   class ScopeContent < EADElement
+    include WithParagraphs
+  
     elname "scopecontent"
   
     xmlattr :altrender
@@ -7,15 +9,6 @@ module EADCodec
     xmlattr :encodinganalog
     xmlattr :id
   
-    xmlsubel :head
-    xmlsubel_mult :p
-    
-    def value
-      str = ""
-      p.each do |par|
-        str += "<p>"+par.value+"</p>\n"
-      end
-      str
-    end
+    xmlsubelements
   end
 end

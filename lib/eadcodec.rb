@@ -29,7 +29,6 @@ module EADCodec
   # actual classes.
   sclass "Abstract", "abstract"
   sclass "PhysDesc", "physdesc"
-  sclass "PhysLoc", "physloc"
   sclass "Author", "author"
   sclass "Sponsor", "sponsor"
   sclass "TitleProper", "titleproper"
@@ -47,7 +46,28 @@ module EADCodec
   sclass "LinkGrp", "linkgrp"
   sclass "Title", "title"
 
+  
+  
+  # Module included in classes that have paragraphs as subelements
+  module WithParagraphs
+    def initialize(value=nil)
+      self << P.new(value) if value
+    end
+  end
+  
+  # Module included in classes that have text and other elements as subelements
+  module WithText
+    def initialize(value=nil)
+      self << value if value
+    end
+    
+    def value
+      self.subelements[0].to_s
+    end
+  end
+  
   class Origination < EADElement
+    include WithText
     elname "origination"
     
     xmlattr :altrender
@@ -57,19 +77,10 @@ module EADCodec
     xmlattr :label
     
     xmlsubelements
-    
-    def initialize(string=nil)
-      if string
-        self.subelements << string
-      end
-    end
-    
-    def value
-      self.subelements[0].to_s
-    end
   end
 
   class UnitTitle < EADElement
+    include WithText
     elname "unittitle"
     
     xmlattr :altrender
@@ -80,19 +91,10 @@ module EADCodec
     xmlattr :type
     
     xmlsubelements
-    
-    def initialize(string=nil)
-      if string
-        self.subelements << string
-      end
-    end
-    
-    def value
-      self.subelements[0].to_s
-    end
   end
   
   class UnitId < EADElement
+    include WithText
     elname "unitid"
     
     xmlattr :altrender
@@ -106,21 +108,11 @@ module EADCodec
     xmlattr :type
     
     xmlsubelements
-    
-    def initialize(string=nil)
-      if string
-        self.subelements << string
-      end
-    end
-    
-    def value
-      self.subelements[0].to_s
-    end
   end
   
-  # The class for the 'head' element. For convenience it can be initialized
-  # with a string value that is used as the first subelement.
+  # The class for the 'head' element.
   class Head < EADElement
+    include WithText
     elname "head"
     
     xmlattr :althead
@@ -129,21 +121,11 @@ module EADCodec
     xmlattr :id
       
     xmlsubelements
-    
-    def initialize(string=nil)
-      if string
-        self.subelements << string
-      end
-    end
-    
-    def value
-      self.subelements[0].to_s
-    end
   end
   
-  # The class for the 'p' element. For convenience it can be initialized
-  # with a string value that is used as the first subelement.
+  # The class for the 'p' element.
   class P < EADElement
+    include WithText
     elname "p"
     
     xmlattr :altrender
@@ -151,18 +133,7 @@ module EADCodec
     xmlattr :id
       
     xmlsubelements
-    
-    def initialize(string=nil)
-      if string
-        self.subelements << string
-      end
-    end
-    
-    def value
-      self.subelements[0].to_s
-    end
   end
-  
 end
 
 require "EADDate"
@@ -200,7 +171,13 @@ require 'EADPhysFacet'
 require 'EADMaterialSpec'
 require 'EADAppraisal'
 require 'EADOtherFindAid'
-
+require 'EADAccessRestrict'
+require 'EADUseRestrict'
+require 'EADLangMaterial'
+require 'EADAccruals'
+require 'EADPhysLoc'
+require 'EADOriginalsLoc'
+require 'EADBibliography'
 
 module EADCodec
   def self.c_levels

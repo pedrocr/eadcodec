@@ -1,5 +1,6 @@
 module EADCodec
   class AltFormAvail < EADElement
+    include WithParagraphs
     elname "altformavail"
     
     xmlattr :altrender

@@ -1,5 +1,6 @@
 module EADCodec
   class GeogName < EADElement
+    include WithText
     elname 'geogname'
     
     xmlattr :altrender
@@ -11,5 +12,7 @@ module EADCodec
     xmlattr :role
     xmlattr :rules
     xmlattr :source
+    
+    xmlsubelements
   end
 end

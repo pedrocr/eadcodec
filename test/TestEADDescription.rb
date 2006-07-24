@@ -21,18 +21,19 @@ class TestEADDescription < TestEAD
 
 	def test_description
 		did = EADCodec::Description.new
-		did.head = @head
-		did.origination = @origination
-		did.unittitle = @unittitle
-		did.unitid = @unitid
-		did.abstract = @abstract
-		did.physdesc = @physdesc
-		did.physloc = @physloc
+		did << EADCodec::Head.new(@head)
+		did << EADCodec::Origination.new(@origination)
+		did << EADCodec::UnitTitle.new(@unittitle)
+		did << EADCodec::UnitId.new(@unitid)
+		did << EADCodec::Abstract.new(@abstract)
+		did << EADCodec::PhysDesc.new(@physdesc)
+		did << EADCodec::PhysLoc.new(@physloc)
 
-		did.unitdate = EADCodec::UnitDate.new(@unitdate)
-		did.unitdate.label = @unitdatelabel
-		did.unitdate.type = @unitdatetype
-
+		ud = EADCodec::UnitDate.new(@unitdate)
+		ud.label = @unitdatelabel
+		ud.type = @unitdatetype
+    did << ud
+    
 		@ead.archdesc << did
 		export
 
@@ -58,16 +59,16 @@ class TestEADDescription < TestEAD
 		import
 		did = @ead.archdesc[:did]
 
-		assert_equal(@head, did.head.value)
-		assert_equal(@origination, did.origination.value) 
-		assert_equal(@unittitle, did.unittitle.value) 
-		assert_equal(@unitid, did.unitid.value)
-		assert_equal(@abstract, did.abstract.value)
-		assert_equal(@physdesc, did.physdesc.value)
-		assert_equal(@physloc, did.physloc.value)
+		assert_equal(@head, did[:head].value)
+		assert_equal(@origination, did[:origination].value) 
+		assert_equal(@unittitle, did[:unittitle].value) 
+		assert_equal(@unitid, did[:unitid].value)
+		assert_equal(@abstract, did[:abstract].value)
+		assert_equal(@physdesc, did[:physdesc].value)
+		assert_equal(@physloc, did[:physloc].value)
 
-		assert_equal(@unitdate, did.unitdate.value)
-		assert_equal(@unitdatelabel, did.unitdate.label) 
-		assert_equal(@unitdatetype, did.unitdate.type)
+		assert_equal(@unitdate, did[:unitdate].value)
+		assert_equal(@unitdatelabel, did[:unitdate].label) 
+		assert_equal(@unitdatetype, did[:unitdate].type)
 	end
 end

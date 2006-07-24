@@ -1,5 +1,6 @@
 module EADCodec
   class Repository < EADElement
+    include WithText
     elname "repository"
     
     xmlattr :altrender

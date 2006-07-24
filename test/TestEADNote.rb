@@ -17,8 +17,8 @@ class TestEADNote < TestEAD
 		dsc << c01
 		
 		note = EADCodec::Note.new
-		note.p << EADCodec::P.new(@p)
-		note.p << EADCodec::P.new(@p)
+		note << EADCodec::P.new(@p)
+		note << EADCodec::P.new(@p)
 		c01 << note
 		
 		export
@@ -30,7 +30,8 @@ class TestEADNote < TestEAD
 	def test_import
 		import
 		note = @ead.archdesc[:dsc][:c][:note]
-		assert_equal(@p, note.p[0].value)
-		assert_equal(@p, note.p[1].value)
+		ps = note.find_all_named(:p)
+		assert_equal(@p, ps[0].value)
+		assert_equal(@p, ps[1].value)
 	end
 end

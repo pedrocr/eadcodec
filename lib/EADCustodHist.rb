@@ -1,5 +1,6 @@
 module EADCodec
   class CustodHist < EADElement
+    include WithParagraphs
     elname "custodhist"
     
     xmlattr :altrender

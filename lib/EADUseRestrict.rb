@@ -1,17 +1,14 @@
 module EADCodec
-  class Note < EADElement
+  class UseRestrict < EADElement
     include WithParagraphs
-    elname "note"
-  
-    xmlattr :actuate
+    elname "userestrict"
+    
     xmlattr :altrender
     xmlattr :audience
     xmlattr :encodinganalog
     xmlattr :id
-    xmlattr :label
-    xmlattr :show
     xmlattr :type
-  
+    
     xmlsubelements
   end
 end

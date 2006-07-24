@@ -20,9 +20,9 @@ class TestEADScopeContent < TestEAD
 		dsc << c01
 		
 		sc = EADCodec::ScopeContent.new
-		sc.head = @head
-		sc.p << EADCodec::P.new(@p)
-		sc.p << EADCodec::P.new(@p)
+		sc << EADCodec::Head.new(@head)
+		sc << EADCodec::P.new(@p)
+		sc << EADCodec::P.new(@p)
 		c01 << sc
 		
 		export
@@ -36,8 +36,9 @@ class TestEADScopeContent < TestEAD
 		import
 		assert_equal(1, @ead.archdesc[:dsc].find_all_named(:c).size)
 		sc = @ead.archdesc[:dsc][:c][:scopecontent]
-		assert_equal(@head, sc.head.value)
-		assert_equal(@p, sc.p[0].value)
-		assert_equal(@p, sc.p[1].value)
+		assert_equal(@head, sc[:head].value)
+		ps = sc.find_all_named(:p)
+		assert_equal(@p, ps[0].value)
+		assert_equal(@p, ps[1].value)
 	end
 end

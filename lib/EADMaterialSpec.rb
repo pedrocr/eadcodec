@@ -1,5 +1,6 @@
 module EADCodec
   class MaterialSpec < EADElement
+    include WithText
     elname "materialspec"
     
     xmlattr :altrender

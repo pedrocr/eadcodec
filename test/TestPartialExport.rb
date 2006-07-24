@@ -12,8 +12,8 @@ class TestPartialExport < TestEAD
     file = File.open(@test_file, "w")
     
     did = EADCodec::Description.new
-    did.head = "abc"
-    did.unitid = "teste"
+    did << EADCodec::Head.new("abc")
+    did << EADCodec::UnitId.new("teste")
     @ead.archdesc << did
     
     dsc = EADCodec::Subordinates.new
@@ -22,9 +22,9 @@ class TestPartialExport < TestEAD
     
     c01 = EADCodec::Level.new
     did = EADCodec::Description.new
-    did.head = "abc"
-    did.unitid = "teste"
-    did.unittitle = "teste"
+    did << EADCodec::Head.new("abc")
+    did << EADCodec::UnitId.new("teste")
+    did << EADCodec::UnitTitle.new("teste")
     c01 << did
     
     dsc << c01
@@ -36,13 +36,13 @@ class TestPartialExport < TestEAD
     
     c02 = EADCodec::Level.new
     did = EADCodec::Description.new
-    did.head = "abc"
-    did.unitid = "teste"
-    did.unittitle = "teste"
+    did << EADCodec::Head.new("abc")
+    did << EADCodec::UnitId.new("teste")
+    did << EADCodec::UnitTitle.new("teste")
     c02 << did
     sc = EADCodec::ScopeContent.new
-    sc.p << EADCodec::P.new('value1')
-    sc.p << EADCodec::P.new('value2')
+    sc << EADCodec::P.new('value1')
+    sc << EADCodec::P.new('value2')
     c02 << sc
     
     dsc << c02

@@ -1,5 +1,6 @@
 module EADCodec
   class OtherFindAid < EADElement
+    include WithParagraphs
     elname "otherfindaid"
     
     xmlattr :altrender

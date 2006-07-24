@@ -1,5 +1,6 @@
 module EADCodec
   class Appraisal < EADElement
+    include WithParagraphs
     elname "appraisal"
     
     xmlattr :altrender

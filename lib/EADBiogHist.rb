@@ -1,10 +1,15 @@
 require "eadcodec"
 
 module EADCodec
-	class BiogHist < EADElement
-		elname "bioghist"
-	
-		xmlsubel :head
-		xmlsubel_mult :p
-	end
+  class BiogHist < EADElement
+    include WithParagraphs
+    elname "bioghist"
+  
+    xmlattr :altrender
+    xmlattr :audience
+    xmlattr :encodinganalog
+    xmlattr :id
+  
+    xmlsubelements
+  end
 end

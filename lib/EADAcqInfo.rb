@@ -1,5 +1,6 @@
 module EADCodec
   class AcqInfo < EADElement
+    include WithParagraphs
     elname "acqinfo"
     
     xmlattr :altrender

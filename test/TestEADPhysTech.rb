@@ -10,12 +10,12 @@ class TestEADPhysTech < TestEAD
 
 	def test_export
 		phystech = EADCodec::PhysTech.new
-		phystech.head = @head
-		(1..4).each {|i| phystech.p << EADCodec::P.new(@ptext+i.to_s)}
+		phystech << EADCodec::Head.new(@head)
+		(1..4).each {|i| phystech << EADCodec::P.new(@ptext+i.to_s)}
 		
 		did = EADCodec::Description.new
-		did.head = "head"
-		did.unitid = "id"
+		did << EADCodec::Head.new("head")
+		did << EADCodec::UnitId.new("id")
 
 		@ead.archdesc << did
  		@ead.archdesc << phystech
@@ -36,9 +36,10 @@ class TestEADPhysTech < TestEAD
 		import
 		phystech = @ead.archdesc[:phystech]
 
-		assert_equal(@head, phystech.head.value)
+		assert_equal(@head, phystech[:head].value)
+		ps = phystech.find_all_named(:p)
 		(1..4).each do |i| 
-			assert_equal(@ptext+i.to_s, phystech.p[i-1].value)
+			assert_equal(@ptext+i.to_s, ps[i-1].value)
 		end
 	end
 end
