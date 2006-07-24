@@ -13,29 +13,29 @@ class TestEADScopeContent < TestEAD
 	end
 
 	def test_attrs
-		dsc = EAD::EADSubordinates.new
-		@ead.add_descelem(dsc)
+		dsc = EADCodec::Subordinates.new
+		@ead.archdesc << dsc
 		
-		c01 = EAD::EADLevel.new
-		dsc.add_level(c01)
+		c01 = EADCodec::Level.new
+		dsc << c01
 		
-		sc = EAD::EADScopeContent.new
+		sc = EADCodec::ScopeContent.new
 		sc.head = @head
-		sc.p << EAD::EADP.new(@p)
-		sc.p << EAD::EADP.new(@p)
-		c01.scopecontent = sc
+		sc.p << EADCodec::P.new(@p)
+		sc.p << EADCodec::P.new(@p)
+		c01 << sc
 		
 		export
-		element_exists("/ead/archdesc/dsc/c01/scopecontent", "Check that the scopecontent was added")
-		compare_xpath(@head, "/ead/archdesc/dsc/c01/scopecontent/head")
-		compare_xpath(@p, "/ead/archdesc/dsc/c01/scopecontent/p")
+		element_exists("/ead/archdesc/dsc/c/scopecontent", "Check that the scopecontent was added")
+		compare_xpath(@head, "/ead/archdesc/dsc/c/scopecontent/head")
+		compare_xpath(@p, "/ead/archdesc/dsc/c/scopecontent/p")
 	end
 
 
 	def test_import
 		import
-		assert_equal(1, @ead.archdesc.dsc[0].c.size)
-		sc = @ead.archdesc.dsc[0].c[0].scopecontent
+		assert_equal(1, @ead.archdesc[:dsc].find_all_named(:c).size)
+		sc = @ead.archdesc[:dsc][:c][:scopecontent]
 		assert_equal(@head, sc.head.value)
 		assert_equal(@p, sc.p[0].value)
 		assert_equal(@p, sc.p[1].value)

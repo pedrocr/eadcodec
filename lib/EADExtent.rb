@@ -1,5 +1,5 @@
-module EAD
-  class EADExtent < EADElement
+module EADCodec
+  class Extent < EADElement
     elname "extent"
     
     xmlattr :altrender

@@ -1,5 +1,5 @@
-module EAD
-  class EADAcqInfo < EADElement
+module EADCodec
+  class AcqInfo < EADElement
     elname "acqinfo"
     
     xmlattr :altrender

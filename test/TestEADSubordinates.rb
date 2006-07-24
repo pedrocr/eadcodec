@@ -13,11 +13,11 @@ class TestEADSubordinates < TestEAD
 	end
 
 	def test_attrs
-		dsc = EAD::EADSubordinates.new
+		dsc = EADCodec::Subordinates.new
 		dsc.type = @type
-		dsc.head = @head
+		dsc << EADCodec::Head.new(@head)
 		
-		@ead.add_descelem(dsc)
+		@ead.archdesc << dsc
 		export
 		compare_xpath(@type, "/ead/archdesc/dsc/@type")
 		compare_xpath(@head, "/ead/archdesc/dsc/head")
@@ -25,9 +25,9 @@ class TestEADSubordinates < TestEAD
 
 	def test_import
 		import
-		dsc = @ead.descelems[0]
+		dsc = @ead.archdesc[:dsc]
 
 		assert_equal(@type, dsc.type)
-		assert_equal(@head, dsc.head.value)
+		assert_equal(@head, dsc[:head].value)
 	end
 end

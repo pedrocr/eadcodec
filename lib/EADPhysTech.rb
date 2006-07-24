@@ -1,5 +1,5 @@
-module EAD
-	class EADPhysTech < EADElement
+module EADCodec
+	class PhysTech < EADElement
 		elname "phystech"
 	
 		xmlsubel :head

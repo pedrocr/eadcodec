@@ -1,5 +1,5 @@
-module EAD
-  class EADFilePlan< EADElement
+module EADCodec
+  class FilePlan< EADElement
     elname "fileplan"
     
     xmlattr :altrender

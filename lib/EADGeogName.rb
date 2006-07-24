@@ -1,5 +1,5 @@
-module EAD
-  class EADGeogName < EADElement
+module EADCodec
+  class GeogName < EADElement
     elname 'geogname'
     
     xmlattr :altrender

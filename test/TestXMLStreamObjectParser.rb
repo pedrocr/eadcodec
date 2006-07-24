@@ -2,7 +2,7 @@ $-w = true
 
 require "test/unit"
 require "xmlcodec"
-require "EAD"
+require "eadcodec"
 require "TestEAD"
 
 class MyStreamListener
@@ -18,7 +18,7 @@ class MyConsumingStreamListener
     @ead = el.get_object
   end
     
-  def el_c02(el)
+  def el_c(el)
     el.consume
   end
 end
@@ -33,19 +33,19 @@ class TestXMLStreamObjectParser < TestEAD
   def test_import
     @ead.eadheader.id = "1"
   
-    dsc = EAD::EADSubordinates.new
-    @ead.add_descelem(dsc)
+    dsc = EADCodec::Subordinates.new
+    @ead.archdesc << dsc
     
-    c01 = EAD::EADLevel.new
-    c01.did = EAD::EADDescription.new
-    c01.phystech = EAD::EADPhysTech.new
-    dsc.add_level(c01)
+    c01 = EADCodec::Level.new
+    c01 << EADCodec::Description.new
+    c01 << EADCodec::PhysTech.new
+    dsc << c01
   
-    c02 = EAD::EADLevel.new
-    c01.add_level(c02)
+    c02 = EADCodec::Level.new
+    c01 << c02
 
-    c03 = EAD::EADLevel.new
-    c02.add_level(c03)
+    c03 = EADCodec::Level.new
+    c02 << c03
 
     export
     listener = MyStreamListener.new
@@ -59,29 +59,29 @@ class TestXMLStreamObjectParser < TestEAD
     assert_equal("1", @ead.eadheader.id)
     assert_equal("Teste", @ead.eadheader.eadtitle.value)
     
-    dsc = @ead.descelems[0]
-    assert(dsc.levels[0], "Check that the level was imported")
-    assert(dsc.levels[0].did, "Check that the description was imported")
-    assert(dsc.levels[0].levels[0], "Check that the second level was imported")
-    assert(dsc.levels[0].levels[0].levels[0], "Check that the third level was imported")
+    dsc = @ead.archdesc[:dsc]
+    assert(dsc[:c], "Check that the level was imported")
+    assert(dsc[:c][:did], "Check that the description was imported")
+    assert(dsc[:c][:c], "Check that the second level was imported")
+    assert(dsc[:c][:c][:c], "Check that the third level was imported")
   end
   
   def test_consume
     @ead.eadheader.id = "1"
   
-    dsc = EAD::EADSubordinates.new
-    @ead.add_descelem(dsc)
+    dsc = EADCodec::Subordinates.new
+    @ead.archdesc << dsc
     
-    c01 = EAD::EADLevel.new
-    c01.did = EAD::EADDescription.new
-    c01.phystech = EAD::EADPhysTech.new
-    dsc.add_level(c01)
+    c01 = EADCodec::Level.new
+    c01 << EADCodec::Description.new
+    c01 << EADCodec::PhysTech.new
+    dsc << c01
   
-    c02 = EAD::EADLevel.new
-    c01.add_level(c02)
+    c02 = EADCodec::Level.new
+    c01 << c02
 
-    c03 = EAD::EADLevel.new
-    c02.add_level(c03)
+    c03 = EADCodec::Level.new
+    c02 << c03
 
     export
     
@@ -90,22 +90,20 @@ class TestXMLStreamObjectParser < TestEAD
     parser.parse(File.new(@test_file))
     @ead = listener.ead    
     
-    dsc = @ead.descelems[0]
-    assert(dsc.levels[0], "Check that the level was imported")
-    assert(dsc.levels[0].did, "Check that the description was imported")
-    assert_equal(0, dsc.levels[0].levels.size, "Check that c03 was consumed")
+    dsc = @ead.archdesc[:dsc]
+    assert_nil(dsc[:c], "Check that the levels were consumed")
   end
   
   def test_numbering
     @ead.eadheader.id = "1"
   
-    dsc = EAD::EADSubordinates.new
-    @ead.add_descelem(dsc)
+    dsc = EADCodec::Subordinates.new
+    @ead.archdesc << dsc
     
-    c01 = EAD::EADLevel.new
-    c01.did = EAD::EADDescription.new
-    c01.phystech = EAD::EADPhysTech.new
-    dsc.add_level(c01)
+    c01 = EADCodec::Level.new
+    c01 << EADCodec::Description.new
+    c01 << EADCodec::PhysTech.new
+    dsc << c01
     
     export
     
@@ -114,8 +112,8 @@ class TestXMLStreamObjectParser < TestEAD
     parser.parse(File.new(@test_file))
     @ead = listener.ead
     
-    dsc = @ead.descelems[0]
-    c01 = dsc.levels[0]
+    dsc = @ead.archdesc[:dsc]
+    c01 = dsc[:c]
     
     assert(dsc.element_id)
     assert(dsc.parent_id)

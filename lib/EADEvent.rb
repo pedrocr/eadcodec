@@ -1,5 +1,5 @@
-module EAD
-  class EADEvent < EADElement
+module EADCodec
+  class Event < EADElement
     elname "event"
     
     xmlattr :altrender

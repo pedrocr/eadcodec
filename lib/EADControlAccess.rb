@@ -1,5 +1,5 @@
-module EAD
-  class EADControlAccess < EADElement
+module EADCodec
+  class ControlAccess < EADElement
     elname :controlaccess
     
     xmlattr :altrender

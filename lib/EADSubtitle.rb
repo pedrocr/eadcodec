@@ -1,7 +1,7 @@
-require "EAD"
+require "eadcodec"
 
-module EAD 
-	class EADSubtitle < EADElement
+module EADCodec
+	class Subtitle < EADElement
 		elname "subtitle"
 		xmlsubelements
 	end

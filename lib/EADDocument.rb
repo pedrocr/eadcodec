@@ -1,8 +1,8 @@
-require "EAD"
+require "eadcodec"
 require "XMLUtils"
 
-module EAD
-  class EADArchDesc < EADElement
+module EADCodec
+  class ArchDesc < EADElement
     elname "archdesc"
   
     xmlattr :altrender
@@ -14,22 +14,9 @@ module EAD
     xmlattr :relatedencoding
     xmlattr :type
     
-    xmlsubel :did
-    xmlsubel :bioghist
-    xmlsubel :scopecontent
-    xmlsubel :phystech
-    xmlsubel_mult :dsc
-
+    xmlsubelements
     def initialize
       @level = "fonds"
-    end
-    
-    def add_descelem(elem)
-      dsc << elem
-    end
-
-    def descelems
-      dsc.dup
     end
     
     def current_content
@@ -48,7 +35,7 @@ module EAD
     end
   end
 
-  class EADDocument < EADElement
+  class Document < EADElement
     elname "ead"
   
     COUNTRY_CODE = "pt"
@@ -63,24 +50,8 @@ module EAD
     end
 
     def initialize(id, title)
-      self.eadheader = EADHeader.new(id, title)
-      self.archdesc = EADArchDesc.new
-    end
-
-    def add_description(description)
-      @archdesc.did = description
-    end
-
-    def ead_did
-      @archdesc.did
-    end
-
-    def add_descelem(elem)
-      @archdesc.add_descelem(elem)
-    end
-
-    def descelems
-      @archdesc.descelems
+      self.eadheader = Header.new(id, title)
+      self.archdesc = ArchDesc.new
     end
 
     def export(filename)

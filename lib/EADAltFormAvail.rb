@@ -1,5 +1,5 @@
-module EAD
-  class EADAltFormAvail < EADElement
+module EADCodec
+  class AltFormAvail < EADElement
     elname "altformavail"
     
     xmlattr :altrender

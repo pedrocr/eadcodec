@@ -1,5 +1,5 @@
-module EAD
-  class EADRelatedMaterial < EADElement
+module EADCodec
+  class RelatedMaterial < EADElement
     elname "relatedmaterial"
   
     xmlattr :altrender

@@ -1,5 +1,5 @@
-module EAD
-	class EADDate < EADElement
+module EADCodec
+	class Date < EADElement
 		elname "date"
 		elwithvalue
 
@@ -14,7 +14,7 @@ module EAD
 		xmlattr :type
 	end
 
-	class EADUnitDate < EADDate	
+	class UnitDate < Date	
 		elname "unitdate"
 		elwithvalue
 		

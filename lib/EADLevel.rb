@@ -1,7 +1,5 @@
-module EAD
-	class EADLevel < EADElement
-		include EADLevels
-		
+module EADCodec
+	class Level < EADElement		
 		xmlattr :altrender
 		xmlattr :audience
 		xmlattr :encodinganalog
@@ -10,18 +8,14 @@ module EAD
 		xmlattr :otherlevel
 		xmlattr :tpattern
 
-		xmlsubel :did
-		xmlsubel :phystech
-		xmlsubel :scopecontent
-		xmlsubel :note
-		xmlsubel :relatedmaterial
-		xmlsubel_mult :c
-		xmlsubel_mult :dsc
+		xmlsubelements
 		
 		attr_reader :parent
 		
-		elnames(*["c","c01","c02","c03","c04","c05","c06",
-		          "c07","c08","c09","c10","c11","c12"])
+		#elnames(*["c","c01","c02","c03","c04","c05","c06",
+		#          "c07","c08","c09","c10","c11","c12"])
+
+    elname 'c'
 
 		def initialize
 			@unnumbered = false
@@ -57,17 +51,17 @@ module EAD
       end  
     end
   
-    alias_method :oldelname, :elname # Just to shut up the warning
-		def elname
-			if unnumbered?
-				return "c"
-			end
+    #alias_method :oldelname, :elname # Just to shut up the warning
+		#def elname
+		#	if unnumbered?
+		#		return "c"
+		#	end
 			
-			if description_level < 10
-				return "c0" + description_level.to_s
-			else
-				return "c" + description_level.to_s
-			end
-		end
+		#	if description_level < 10
+		#		return "c0" + description_level.to_s
+		#	else
+		#		return "c" + description_level.to_s
+		#	end
+		#end
 	end
 end

@@ -1,5 +1,5 @@
-module EAD
-  class EADList < EADElement
+module EADCodec
+  class List < EADElement
     elname "list"
     
     xmlattr :altrender
@@ -13,7 +13,7 @@ module EAD
     xmlsubelements
   end
   
-  class EADDefItem < EADElement 
+  class DefItem < EADElement 
     elname "defitem"
     
     xmlattr :altrender
@@ -24,7 +24,7 @@ module EAD
     xmlsubel :item
   end
   
-  class EADItem < EADElement 
+  class Item < EADElement 
     elname "item"
     
     xmlattr :altrender

@@ -1,5 +1,5 @@
-module EAD
-	class EADId < EADElement
+module EADCodec
+	class Id < EADElement
 		elname 'eadid'
 		elwithvalue
 	
@@ -12,7 +12,7 @@ module EAD
 		xmlattr :urn
 	end
 
-	class EADTitleStatement < EADElement
+	class TitleStatement < EADElement
 		elname 'titlestmt'
 	
 		xmlsubel :author
@@ -25,7 +25,7 @@ module EAD
 		end
 	end
 
-	class EADFileDesc < EADElement
+	class FileDesc < EADElement
 		elname 'filedesc'
 	
 		xmlattr :altrender
@@ -35,11 +35,11 @@ module EAD
 		xmlsubel :titlestmt
 
 		def initialize(title)
-			self.titlestmt = EADTitleStatement.new(title)
+			self.titlestmt = TitleStatement.new(title)
 		end
 	end
 
-	class EADHeader < EADElement
+	class Header < EADElement
 		elname 'eadheader'
 
 		xmlattr :altrender
@@ -59,8 +59,8 @@ module EAD
 		xmlsubel :profiledesc
 		
 		def initialize(id, title)
-			self.eadid = EADId.new(id)
-			self.filedesc = EADFileDesc.new(title)
+			self.eadid = Id.new(id)
+			self.filedesc = FileDesc.new(title)
 		end
 
 		def eadtitle

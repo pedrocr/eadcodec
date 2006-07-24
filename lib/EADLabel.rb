@@ -1,5 +1,5 @@
-module EAD
-  class EADLabel < EADElement
+module EADCodec
+  class Label < EADElement
     elname "label"
     
     xmlattr :altrender

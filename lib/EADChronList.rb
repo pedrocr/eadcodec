@@ -1,5 +1,5 @@
-module EAD
-  class EADChronList < EADElement
+module EADCodec
+  class ChronList < EADElement
     elname "chronlist"
     
     xmlattr :altrender
@@ -10,7 +10,7 @@ module EAD
     xmlsubelements
   end
   
-  class EADChronItem < EADElement
+  class ChronItem < EADElement
     elname "chronitem"
     
     xmlattr :altrender

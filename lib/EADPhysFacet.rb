@@ -1,5 +1,5 @@
-module EAD
-  class EADPhysFacet < EADElement
+module EADCodec
+  class PhysFacet < EADElement
     elname "physfacet"
     
     xmlattr :altrender

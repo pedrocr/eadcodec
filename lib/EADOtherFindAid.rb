@@ -1,5 +1,5 @@
-module EAD
-  class EADOtherFindAid < EADElement
+module EADCodec
+  class OtherFindAid < EADElement
     elname "otherfindaid"
     
     xmlattr :altrender

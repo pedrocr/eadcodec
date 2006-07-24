@@ -1,10 +1,10 @@
-module EAD
-	class EADCreation < EADElement
+module EADCodec
+	class Creation < EADElement
 		elname "creation"
 		xmlsubelements
 	end
 
-	class EADProfileDesc < EADElement
+	class ProfileDesc < EADElement
 		elname "profiledesc"
 		
 		xmlattr :altrender

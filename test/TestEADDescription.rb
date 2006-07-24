@@ -20,7 +20,7 @@ class TestEADDescription < TestEAD
 	end
 
 	def test_description
-		did = EAD::EADDescription.new
+		did = EADCodec::Description.new
 		did.head = @head
 		did.origination = @origination
 		did.unittitle = @unittitle
@@ -29,11 +29,11 @@ class TestEADDescription < TestEAD
 		did.physdesc = @physdesc
 		did.physloc = @physloc
 
-		did.unitdate = EAD::EADUnitDate.new(@unitdate)
+		did.unitdate = EADCodec::UnitDate.new(@unitdate)
 		did.unitdate.label = @unitdatelabel
 		did.unitdate.type = @unitdatetype
 
-		@ead.add_description(did)
+		@ead.archdesc << did
 		export
 
 		# Since we've added content it is now valid EAD
@@ -56,7 +56,7 @@ class TestEADDescription < TestEAD
 
 	def test_import_description
 		import
-		did = @ead.ead_did
+		did = @ead.archdesc[:did]
 
 		assert_equal(@head, did.head.value)
 		assert_equal(@origination, did.origination.value) 

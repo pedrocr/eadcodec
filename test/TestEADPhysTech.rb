@@ -9,16 +9,16 @@ class TestEADPhysTech < TestEAD
 	end
 
 	def test_export
-		phystech = EAD::EADPhysTech.new
+		phystech = EADCodec::PhysTech.new
 		phystech.head = @head
-		(1..4).each {|i| phystech.p << EAD::EADP.new(@ptext+i.to_s)}
+		(1..4).each {|i| phystech.p << EADCodec::P.new(@ptext+i.to_s)}
 		
-		did = EAD::EADDescription.new
+		did = EADCodec::Description.new
 		did.head = "head"
 		did.unitid = "id"
 
-		@ead.archdesc.phystech = phystech
-		@ead.archdesc.did = did
+		@ead.archdesc << did
+ 		@ead.archdesc << phystech
 		export
 
 		# Since we've added content it is now valid EAD
@@ -34,7 +34,7 @@ class TestEADPhysTech < TestEAD
 
 	def test_import
 		import
-		phystech = @ead.archdesc.phystech
+		phystech = @ead.archdesc[:phystech]
 
 		assert_equal(@head, phystech.head.value)
 		(1..4).each do |i| 

@@ -1,5 +1,5 @@
-module EAD
-  class EADProcessInfo < EADElement
+module EADCodec
+  class ProcessInfo < EADElement
     elname "processinfo"
     
     xmlattr :altrender

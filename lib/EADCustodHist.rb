@@ -1,5 +1,5 @@
-module EAD
-  class EADCustodHist < EADElement
+module EADCodec
+  class CustodHist < EADElement
     elname "custodhist"
     
     xmlattr :altrender

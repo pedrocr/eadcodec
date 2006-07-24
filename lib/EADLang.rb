@@ -1,5 +1,5 @@
-module EAD
-	class EADLanguage < EADElement
+module EADCodec
+	class Language < EADElement
 		elname "language"
 
 		xmlattr :altrender
@@ -20,7 +20,7 @@ module EAD
 		end
 	end
 
-	class EADLangMaterial < EADElement
+	class LangMaterial < EADElement
 		elname "langmaterial"
 
 		xmlattr :altrender

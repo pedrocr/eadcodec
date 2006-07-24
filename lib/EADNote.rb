@@ -1,5 +1,5 @@
-module EAD
-  class EADNote < EADElement
+module EADCodec
+  class Note < EADElement
     elname "note"
   
     xmlattr :actuate

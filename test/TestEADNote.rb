@@ -10,26 +10,26 @@ class TestEADNote < TestEAD
 	end
 
 	def test_attrs
-		dsc = EAD::EADSubordinates.new
-		@ead.add_descelem(dsc)
+		dsc = EADCodec::Subordinates.new
+		@ead.archdesc << dsc
 		
-		c01 = EAD::EADLevel.new
-		dsc.add_level(c01)
+		c01 = EADCodec::Level.new
+		dsc << c01
 		
-		sc = EAD::EADNote.new
-		sc.p << EAD::EADP.new(@p)
-		sc.p << EAD::EADP.new(@p)
-		c01.note = sc
+		note = EADCodec::Note.new
+		note.p << EADCodec::P.new(@p)
+		note.p << EADCodec::P.new(@p)
+		c01 << note
 		
 		export
-		element_exists("/ead/archdesc/dsc/c01/note", "Check that the scopecontent was added")
-		compare_xpath(@p, "/ead/archdesc/dsc/c01/note/p")
+		element_exists("/ead/archdesc/dsc/c/note", "Check that the note was added")
+		compare_xpath(@p, "/ead/archdesc/dsc/c/note/p")
 	end
 
 
 	def test_import
 		import
-		note = @ead.descelems[0].levels[0].note
+		note = @ead.archdesc[:dsc][:c][:note]
 		assert_equal(@p, note.p[0].value)
 		assert_equal(@p, note.p[1].value)
 	end

@@ -1,7 +1,7 @@
-require "EAD"
+require "eadcodec"
 
-module EAD
-	class EADBiogHist < EADElement
+module EADCodec
+	class BiogHist < EADElement
 		elname "bioghist"
 	
 		xmlsubel :head

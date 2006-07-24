@@ -1,5 +1,5 @@
-module EAD
-  class EADScopeContent < EADElement
+module EADCodec
+  class ScopeContent < EADElement
     elname "scopecontent"
   
     xmlattr :altrender

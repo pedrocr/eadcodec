@@ -12,11 +12,11 @@ class TestEADSubtitle < TestEAD
 	def test_base_export
 		titlestmt = @ead.eadheader.filedesc.titlestmt
 	
-		st = titlestmt.subtitle = EAD::EADSubtitle.new
+		st = titlestmt.subtitle = EADCodec::Subtitle.new
 		st.subelements << @text
-		st.subelements << EAD::EADAbbr.new(@abbr)
+		st.subelements << EADCodec::Abbr.new(@abbr)
 		st.subelements << @text
-		st.subelements << EAD::EADAbbr.new(@abbr)
+		st.subelements << EADCodec::Abbr.new(@abbr)
 		
 		export
 		# The base document has an empty archdesc and is thus not valid EAD

@@ -1,7 +1,7 @@
 require "EADDate"
 
-module EAD
-	class EADDescription < EADElement	
+module EADCodec
+	class Description < EADElement	
 		elname "did"
 	
 		xmlattr :altrender

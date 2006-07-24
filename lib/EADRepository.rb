@@ -1,5 +1,5 @@
-module EAD
-  class EADRepository < EADElement
+module EADCodec
+  class Repository < EADElement
     elname "repository"
     
     xmlattr :altrender

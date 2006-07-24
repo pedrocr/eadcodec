@@ -1,10 +1,8 @@
-require "EAD.rb"
+require "eadcodec"
 
-module EAD
-  class EADSubordinates < EADElement
+module EADCodec
+  class Subordinates < EADElement
     elname "dsc"
-  
-    include EADLevels
     
     xmlattr :altrender
     xmlattr :audience
@@ -14,9 +12,7 @@ module EAD
     xmlattr :tpattern
     xmlattr :type
     
-    xmlsubel :head
-    xmlsubel_mult :p
-    xmlsubel_mult :c
+    xmlsubelements
 
     def description_level
       0
