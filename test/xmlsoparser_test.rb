@@ -18,7 +18,7 @@ class MyConsumingStreamListener
   end
 end
 
-class TestXMLStreamObjectParser < TestEAD
+class TestXMLStreamObjectParser < Test::Unit::TestCase
   def initialize(*args)
     super(*args)
     

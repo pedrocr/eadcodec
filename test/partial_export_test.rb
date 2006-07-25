@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/test_helper'
 
-class TestPartialExport < TestEAD
+class TestPartialExport < Test::Unit::TestCase
   def setup
     super
     @test_file = "test_ead_partial_export.xml"

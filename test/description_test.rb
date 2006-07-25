@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/test_helper'
 
-class TestEADDescription < TestEAD
+class TestEADDescription < Test::Unit::TestCase
 	def initialize(*args)
 		super(*args)
 

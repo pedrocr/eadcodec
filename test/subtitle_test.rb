@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/test_helper'
 
-class TestEADSubtitle < TestEAD
+class TestEADSubtitle < Test::Unit::TestCase
 	def setup
 		super
 		@test_file = "test_ead_subtitle.xml"

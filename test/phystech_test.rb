@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/test_helper'
 
-class TestEADPhysTech < TestEAD
+class TestEADPhysTech < Test::Unit::TestCase
 	def initialize(*args)
 		super(*args)
 		@test_file = "test_ead_phystech.xml"

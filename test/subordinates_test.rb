@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/test_helper'
 
-class TestEADSubordinates < TestEAD
+class TestEADSubordinates < Test::Unit::TestCase
 
 	def initialize(*args)
 		super(*args)

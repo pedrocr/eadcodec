@@ -3,12 +3,8 @@ require File.dirname(__FILE__) + '/../lib/eadcodec'
 require 'test/unit'
 require 'tmpdir'
 
-class TestEAD < Test::Unit::TestCase
-  def initialize(*args)
-    super(*args)
-    @test_file = nil
-  end
-
+class Test::Unit::TestCase
+  alias_method :old_setup, :setup
   def setup
     @ead = EADCodec::Document.new("1", "Teste")
   end
@@ -33,10 +29,6 @@ class TestEAD < Test::Unit::TestCase
   def validate_dtd
     assert(system("rxp", "-VVs", filepath))
     #assert(system("xmlstarlet", "val", "-d", "ead.dtd", @test_file))
-  end
-
-  def test_fake
-    #Just a fake test to fool Unit::TestCase
   end
 
   def compare_xpath(value, path)
