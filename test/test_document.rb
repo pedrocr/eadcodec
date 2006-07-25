@@ -1,4 +1,4 @@
-require "TestEAD"
+require File.dirname(__FILE__) + '/test_helper'
 
 class TestEADDocument < TestEAD
 	def setup

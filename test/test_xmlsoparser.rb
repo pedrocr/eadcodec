@@ -1,9 +1,8 @@
-$-w = true
+require File.dirname(__FILE__) + '/test_helper'
 
 require "test/unit"
 require "xmlcodec"
 require "eadcodec"
-require "TestEAD"
 
 class MyStreamListener
   attr_reader :ead

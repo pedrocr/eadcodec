@@ -50,9 +50,8 @@ end
 
 Rake::TestTask.new do |t|
   t.libs << "test"
-  t.test_files = FileList['test/Test*.rb'].exclude('test/TestEAD.rb')
-  t.libs = ['../lib','..']
-  t.ruby_opts = ['-xtest']
+  t.test_files = FileList['test/test_*.rb'].exclude('test/test_helper.rb')
+  t.libs = ['lib']
   t.verbose = true
 end
 

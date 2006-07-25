@@ -1,6 +1,4 @@
-$:.unshift File.join(File.dirname(__FILE__), "..")
 $-w = true
-
 require 'eadcodec'
 require 'test/unit'
 require 'XMLUtils'
