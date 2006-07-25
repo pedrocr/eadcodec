@@ -28,7 +28,6 @@ module EADCodec
   # Most of these actually can have children so they should be promoted to
   # actual classes.
   sclass "Abstract", "abstract"
-  sclass "PhysDesc", "physdesc"
   sclass "Author", "author"
   sclass "Sponsor", "sponsor"
   sclass "TitleProper", "titleproper"
@@ -51,14 +50,18 @@ module EADCodec
   # Module included in classes that have paragraphs as subelements
   module WithParagraphs
     def initialize(value=nil)
-      self << P.new(value) if value
+      value = [] if not value
+      value = [value] if not value.is_a? Array
+      value.each{|v| self << P.new(v)}
     end
   end
   
   # Module included in classes that have text and other elements as subelements
   module WithText
     def initialize(value=nil)
-      self << value if value
+      value = [] if not value
+      value = [value] if not value.is_a? Array
+      value.each{|v| self << v}
     end
     
     def value
@@ -178,6 +181,8 @@ require 'EADAccruals'
 require 'EADPhysLoc'
 require 'EADOriginalsLoc'
 require 'EADBibliography'
+require 'EADOdd'
+require 'EADPhysDesc'
 
 module EADCodec
   def self.c_levels

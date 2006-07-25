@@ -1,7 +1,7 @@
 module EADCodec
-  class PhysFacet < EADElement
+  class PhysDesc < EADElement
     include WithText
-    elname "physfacet"
+    elname "physdesc"
     
     xmlattr :altrender
     xmlattr :audience
@@ -10,8 +10,6 @@ module EADCodec
     xmlattr :label
     xmlattr :rules
     xmlattr :source
-    xmlattr :type
-    xmlattr :unit
     
     xmlsubelements
   end

@@ -1,5 +1,6 @@
 module EADCodec
   class Arrangement < EADElement
+    include WithParagraphs
     elname "arrangement"
     
     xmlattr :altrender
