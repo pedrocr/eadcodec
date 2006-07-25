@@ -1,5 +1,4 @@
 require "TestEAD"
-require "EADSubtitle"
 
 class TestEADSubtitle < TestEAD
 	def setup

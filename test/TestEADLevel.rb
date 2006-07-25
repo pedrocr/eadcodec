@@ -1,6 +1,4 @@
 require "TestEAD"
-require "EADSubordinates"
-require "EADLevel"
 
 class TestEADLevel < TestEAD
 	def initialize(*args)

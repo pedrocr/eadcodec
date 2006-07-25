@@ -139,50 +139,7 @@ module EADCodec
   end
 end
 
-require "EADDate"
-require "EADSubtitle"
-require "EADPhysTech"
-require "EADScopeContent"
-require "EADRelatedMaterial"
-require "EADNote"
-require "EADDescription"
-require "EADLevel"
-require "EADSubordinates"
-require "EADProfileDesc"
-require "EADHeader"
-require "EADBiogHist"
-require "EADDocument"
-require "EADLang"
-require 'EADExtent'
-require 'EADGeogName'
-require 'EADRepository'
-require 'EADAcqInfo'
-require 'EADChronList'
-require 'EADEvent'
-require 'EADControlAccess'
-require 'EADList'
-require 'EADLabel'
-require 'EADCustodHist'
-require 'EADFilePlan'
-require 'EADProcessInfo'
-require 'EADName'
-require 'EADDimensions'
-require 'EADArrangement'
-require 'EADContainer'
-require 'EADAltFormAvail'
-require 'EADPhysFacet'
-require 'EADMaterialSpec'
-require 'EADAppraisal'
-require 'EADOtherFindAid'
-require 'EADAccessRestrict'
-require 'EADUseRestrict'
-require 'EADLangMaterial'
-require 'EADAccruals'
-require 'EADPhysLoc'
-require 'EADOriginalsLoc'
-require 'EADBibliography'
-require 'EADOdd'
-require 'EADPhysDesc'
+Dir.glob(File.dirname(__FILE__)+'/elements/*.rb').each {|el| require el}
 
 module EADCodec
   def self.c_levels

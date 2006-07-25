@@ -1,5 +1,3 @@
-require "EADDate"
-
 module EADCodec
 	class Description < EADElement	
 		elname "did"

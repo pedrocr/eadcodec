@@ -1,5 +1,4 @@
 require "TestEAD"
-require "EADSubordinates"
 
 class TestEADSubordinates < TestEAD
 

@@ -1,5 +1,4 @@
 require "TestEAD"
-require "EADNote"
 
 class TestEADNote < TestEAD
 	def initialize(*args)

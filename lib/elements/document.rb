@@ -1,4 +1,3 @@
-require "eadcodec"
 require "XMLUtils"
 
 module EADCodec

@@ -1,5 +1,3 @@
-require "eadcodec"
-
 module EADCodec
   class BiogHist < EADElement
     include WithParagraphs

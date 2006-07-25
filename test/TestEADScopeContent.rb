@@ -1,7 +1,4 @@
 require "TestEAD"
-require "EADSubordinates"
-require "EADLevel"
-require "EADScopeContent"
 
 class TestEADScopeContent < TestEAD
 	def initialize(*args)
