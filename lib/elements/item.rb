@@ -1,12 +1,9 @@
-class ChronList < EADElement
-  elname "chronlist"
+class Item < EADElement 
+  elname "item"
   
   xmlattr :altrender
   xmlattr :audience
-  xmlattr :encodinganalog
   xmlattr :id
   
   xmlsubelements
 end
-
-

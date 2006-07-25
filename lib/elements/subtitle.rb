@@ -1,6 +1,4 @@
-module EADCodec
-	class Subtitle < EADElement
-		elname "subtitle"
-		xmlsubelements
-	end
+class Subtitle < EADElement
+	elname "subtitle"
+	xmlsubelements
 end

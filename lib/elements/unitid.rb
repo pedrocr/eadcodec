@@ -1,12 +1,15 @@
-class MaterialSpec < EADElement
+class UnitId < EADElement
   include WithText
-  elname "materialspec"
+  elname "unitid"
   
   xmlattr :altrender
   xmlattr :audience
+  xmlattr :countrycode
   xmlattr :encodinganalog
   xmlattr :id
+  xmlattr :identifier
   xmlattr :label
+  xmlattr :repositorycode
   xmlattr :type
   
   xmlsubelements

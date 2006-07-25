@@ -1,36 +1,13 @@
-module EADCodec
-  class List < EADElement
-    elname "list"
-    
-    xmlattr :altrender
-    xmlattr :audience
-    xmlattr :continuation
-    xmlattr :id
-    xmlattr :mark
-    xmlattr :numeration
-    xmlattr :type
-    
-    xmlsubelements
-  end
+class List < EADElement
+  elname "list"
   
-  class DefItem < EADElement 
-    elname "defitem"
-    
-    xmlattr :altrender
-    xmlattr :audience
-    xmlattr :id
-    
-    xmlsubel :label
-    xmlsubel :item
-  end
+  xmlattr :altrender
+  xmlattr :audience
+  xmlattr :continuation
+  xmlattr :id
+  xmlattr :mark
+  xmlattr :numeration
+  xmlattr :type
   
-  class Item < EADElement 
-    elname "item"
-    
-    xmlattr :altrender
-    xmlattr :audience
-    xmlattr :id
-    
-    xmlsubelements
-  end
+  xmlsubelements
 end

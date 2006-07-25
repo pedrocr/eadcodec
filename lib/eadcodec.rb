@@ -68,83 +68,8 @@ module EADCodec
       self.subelements[0].to_s
     end
   end
-  
-  class Origination < EADElement
-    include WithText
-    elname "origination"
-    
-    xmlattr :altrender
-    xmlattr :audience
-    xmlattr :encodinganalog
-    xmlattr :id
-    xmlattr :label
-    
-    xmlsubelements
-  end
-
-  class UnitTitle < EADElement
-    include WithText
-    elname "unittitle"
-    
-    xmlattr :altrender
-    xmlattr :audience
-    xmlattr :encodinganalog
-    xmlattr :id
-    xmlattr :label
-    xmlattr :type
-    
-    xmlsubelements
-  end
-  
-  class UnitId < EADElement
-    include WithText
-    elname "unitid"
-    
-    xmlattr :altrender
-    xmlattr :audience
-    xmlattr :countrycode
-    xmlattr :encodinganalog
-    xmlattr :id
-    xmlattr :identifier
-    xmlattr :label
-    xmlattr :repositorycode
-    xmlattr :type
-    
-    xmlsubelements
-  end
-  
-  # The class for the 'head' element.
-  class Head < EADElement
-    include WithText
-    elname "head"
-    
-    xmlattr :althead
-    xmlattr :altrender
-    xmlattr :audience
-    xmlattr :id
-      
-    xmlsubelements
-  end
-  
-  # The class for the 'p' element.
-  class P < EADElement
-    include WithText
-    elname "p"
-    
-    xmlattr :altrender
-    xmlattr :audience
-    xmlattr :id
-      
-    xmlsubelements
-  end
 end
 
-Dir.glob(File.dirname(__FILE__)+'/elements/*.rb').each {|el| require el}
-
-module EADCodec
-  def self.c_levels
-     ["c","c01","c02","c03","c04","c05","c06","c07","c08","c09","c10","c11","c12"]
-  end
-               
-  #c_levels.each{|level| ElClasses[level.to_sym] = EADLevel}
+Dir.glob(File.dirname(__FILE__)+'/elements/*.rb').each do |el|
+  EADCodec.module_eval File.open(el).read
 end

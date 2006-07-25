@@ -1,12 +1,10 @@
-class Repository < EADElement
+class P < EADElement
   include WithText
-  elname "repository"
+  elname "p"
   
   xmlattr :altrender
   xmlattr :audience
-  xmlattr :encodinganalog
   xmlattr :id
-  xmlattr :label
-  
+    
   xmlsubelements
 end
