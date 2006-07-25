@@ -9,7 +9,7 @@ class TestPartialExport < TestEAD
   end
 
   def test_partial_export
-    file = File.open(@test_file, "w")
+    file = File.open(filepath, "w")
     
     did = EADCodec::Description.new
     did << EADCodec::Head.new("abc")

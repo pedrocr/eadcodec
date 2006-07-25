@@ -1,9 +1,5 @@
 require File.dirname(__FILE__) + '/test_helper'
 
-require "test/unit"
-require "xmlcodec"
-require "eadcodec"
-
 class MyStreamListener
   attr_reader :ead
   def el_ead(el)
@@ -49,7 +45,7 @@ class TestXMLStreamObjectParser < TestEAD
     export
     listener = MyStreamListener.new
     parser = XMLCodec::XMLStreamObjectParser.new(listener)
-    parser.parse(File.new(@test_file))
+    parser.parse(File.new(filepath))
     @ead = listener.ead
     
     assert_equal(@ead, parser.top_element)
@@ -86,7 +82,7 @@ class TestXMLStreamObjectParser < TestEAD
     
     listener = MyConsumingStreamListener.new
     parser = XMLCodec::XMLStreamObjectParser.new(listener)
-    parser.parse(File.new(@test_file))
+    parser.parse(File.new(filepath))
     @ead = listener.ead    
     
     dsc = @ead.archdesc[:dsc]
@@ -108,7 +104,7 @@ class TestXMLStreamObjectParser < TestEAD
     
     listener = MyStreamListener.new
     parser = XMLCodec::XMLStreamObjectParser.new(listener)
-    parser.parse(File.new(@test_file))
+    parser.parse(File.new(filepath))
     @ead = listener.ead
     
     dsc = @ead.archdesc[:dsc]

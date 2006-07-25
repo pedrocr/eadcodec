@@ -1,5 +1,3 @@
-require "XMLUtils"
-
 module EADCodec
   class ArchDesc < EADElement
     elname "archdesc"

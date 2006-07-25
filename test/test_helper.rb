@@ -1,7 +1,7 @@
 $-w = true
-require 'eadcodec'
+require File.dirname(__FILE__) + '/../lib/eadcodec'
 require 'test/unit'
-require 'XMLUtils'
+require 'tmpdir'
 
 class TestEAD < Test::Unit::TestCase
   def initialize(*args)
@@ -13,21 +13,25 @@ class TestEAD < Test::Unit::TestCase
     @ead = EADCodec::Document.new("1", "Teste")
   end
 
-  def export(file=nil)
-    file = @test_file if not file
-    @ead.export(file) 
+  def filepath(name=nil)
+    name = @test_file if not name
+    File.join(Dir::tmpdir, name)
+  end
+
+  def export(name=nil)
+    @ead.export filepath(name) 
   end
   
   def import
-    @ead = EADCodec::Document.from_file(@test_file)
+    @ead = EADCodec::Document.from_file filepath
   end
 
   def validate_well_formed
-    assert(system("rxp", "-xs", @test_file))
+    assert(system("rxp", "-xs", filepath))
   end
 
   def validate_dtd
-    assert(system("rxp", "-VVs", @test_file))
+    assert(system("rxp", "-VVs", filepath))
     #assert(system("xmlstarlet", "val", "-d", "ead.dtd", @test_file))
   end
 
@@ -40,10 +44,10 @@ class TestEAD < Test::Unit::TestCase
   end
 
   def element_exists(xpath, *args)
-    assert(XMLUtils::element_exists(xpath, @test_file), *args)
+    assert(XMLUtils::element_exists(xpath, filepath), *args)
   end
 
   def select(xpath)
-    XMLUtils::select_path(xpath, @test_file)
+    XMLUtils::select_path(xpath, filepath)
   end
 end
