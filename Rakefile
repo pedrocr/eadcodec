@@ -1,5 +1,5 @@
 PKG_NAME = 'eadcodec'
-PKG_VERSION = '0.0.4'
+PKG_VERSION = '0.1.0'
 
 require 'rake'
 require 'rake/testtask'
@@ -30,7 +30,7 @@ spec = Gem::Specification.new do |s|
   s.author = 'Pedro Côrte-Real'
   s.email = 'pedrocr@gmail.com'
   s.requirements << 'xmlcodec'
-  s.add_dependency('xmlcodec', '>= 0.0.4')
+  s.add_dependency('xmlcodec', '>= 0.1.0')
   s.require_path = 'lib'
   s.autorequire = 'rake'
   s.files = PKG_FILES

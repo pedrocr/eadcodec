@@ -44,7 +44,7 @@ class TestXMLStreamObjectParser < Test::Unit::TestCase
 
     export
     listener = MyStreamListener.new
-    parser = XMLCodec::XMLStreamObjectParser.new(listener)
+    parser = XMLCodec::XMLStreamObjectParser.new(EADCodec::EADElement, listener)
     parser.parse(File.new(filepath))
     @ead = listener.ead
     
@@ -81,7 +81,7 @@ class TestXMLStreamObjectParser < Test::Unit::TestCase
     export
     
     listener = MyConsumingStreamListener.new
-    parser = XMLCodec::XMLStreamObjectParser.new(listener)
+    parser = XMLCodec::XMLStreamObjectParser.new(EADCodec::EADElement, listener)
     parser.parse(File.new(filepath))
     @ead = listener.ead    
     
@@ -103,7 +103,7 @@ class TestXMLStreamObjectParser < Test::Unit::TestCase
     export
     
     listener = MyStreamListener.new
-    parser = XMLCodec::XMLStreamObjectParser.new(listener)
+    parser = XMLCodec::XMLStreamObjectParser.new(EADCodec::EADElement, listener)
     parser.parse(File.new(filepath))
     @ead = listener.ead
     

@@ -8,6 +8,7 @@ require "xmlcodec"
 # though.
 module EADCodec
   class EADElement < XMLCodec::XMLElement #:nodoc:
+    xmlformat 'EAD'
   end
   
   class EADSimpleElement < EADElement
