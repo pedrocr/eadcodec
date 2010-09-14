@@ -1,8 +1,8 @@
 class Document < EADElement
   elname "ead"
 
-  COUNTRY_CODE = "pt"
-  AGENCY_CODE = "iantt"
+  DTD_LOC = '"+//ISBN 1-931666-00-8//DTD ead.dtd '+
+            '(Encoded Archival Description (EAD) Version 2002)//EN" "ead.dtd"'
 
   xmlsubel :eadheader
   xmlsubel :archdesc
@@ -20,7 +20,7 @@ class Document < EADElement
   def export(filename)
     doc = REXML::Document.new
     doc << REXML::XMLDecl.new("1.0", "UTF-8")
-    doc << REXML::DocType.new("ead SYSTEM", '"file:///home/pedrocr/ead.dtd"')
+    doc << REXML::DocType.new("ead PUBLIC", DTD_LOC)
     create_xml(doc)
     output = File.open(filename, "w")
 
@@ -32,7 +32,7 @@ class Document < EADElement
   def start_partial_export(file)
     if not already_partial_exported?
       file << "<?xml version='1.0' encoding='UTF-8'?>\n"
-      file << "<!DOCTYPE ead SYSTEM \"file:///home/pedrocr/ead.dtd\">\n"
+      file << "<!DOCTYPE ead PUBLIC #{DTD_LOC}>"
       super
     end
   end
