@@ -4,6 +4,8 @@ require 'test/unit'
 require 'tmpdir'
 
 class Test::Unit::TestCase
+  DTD_PATH = File.dirname(__FILE__) + '/examples/'
+
   alias_method :old_setup, :setup
   def setup
     @ead = EADCodec::Document.new("1", "Teste")
@@ -22,24 +24,30 @@ class Test::Unit::TestCase
     @ead = EADCodec::Document.from_file filepath
   end
 
-  def validate_well_formed
-    assert(system("rxp", "-xs", filepath))
+  def xmllint_installed
+    assert(system("xmllint --version > /dev/null 2>&1"), 
+           "xmllint utility not installed"+
+           "(on ubuntu/debian install package libxml2-utils)")
   end
 
+  def validate_well_formed
+    xmllint_installed
+		assert(system("xmllint #{filepath} >/dev/null"), 
+           "Validation failed for #{filepath}")
+	end
+
   def validate_dtd
-    assert(system("rxp", "-VVs", filepath))
-    #assert(system("xmlstarlet", "val", "-d", "ead.dtd", @test_file))
+    xmllint_installed
+    assert(system("xmllint --nonet --loaddtd --path #{DTD_PATH}"+
+                  " #{filepath} > /dev/null"),
+           "Validation failed for #{filepath}")
   end
 
   def compare_xpath(value, path)
-    assert_equal(value, select(path))
-  end
+		assert_equal(value.strip, XMLUtils::select_path(path, filepath).strip)
+	end
 
   def element_exists(xpath, *args)
     assert(XMLUtils::element_exists(xpath, filepath), *args)
-  end
-
-  def select(xpath)
-    XMLUtils::select_path(xpath, filepath)
   end
 end
