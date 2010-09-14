@@ -18,5 +18,5 @@ with it allowing for stream parsing of XML files of arbitrary length with
 constant memory usage while still treating elements as ruby objects.
 
 Author:
-  Pedro Côrte-Real
-  <pedrocr@gmail.com>
+  Pedro CÃ´rte-Real
+  <pedro@pedrocr.net>
