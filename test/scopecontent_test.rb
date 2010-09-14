@@ -33,9 +33,9 @@ class TestEADScopeContent < Test::Unit::TestCase
 		import
 		assert_equal(1, @ead.archdesc[:dsc].find_all_named(:c).size)
 		sc = @ead.archdesc[:dsc][:c][:scopecontent]
-		assert_equal(@head, sc[:head].value)
+		assert_equal(@head, sc[:head].value.strip)
 		ps = sc.find_all_named(:p)
-		assert_equal(@p, ps[0].value)
-		assert_equal(@p, ps[1].value)
+		assert_equal(@p, ps[0].value.strip)
+		assert_equal(@p, ps[1].value.strip)
 	end
 end

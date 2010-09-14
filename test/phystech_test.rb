@@ -36,10 +36,10 @@ class TestEADPhysTech < Test::Unit::TestCase
 		import
 		phystech = @ead.archdesc[:phystech]
 
-		assert_equal(@head, phystech[:head].value)
+		assert_equal(@head, phystech[:head].value.strip)
 		ps = phystech.find_all_named(:p)
 		(1..4).each do |i| 
-			assert_equal(@ptext+i.to_s, ps[i-1].value)
+			assert_equal(@ptext+i.to_s, ps[i-1].value.strip)
 		end
 	end
 end

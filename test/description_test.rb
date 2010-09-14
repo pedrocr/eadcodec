@@ -59,15 +59,15 @@ class TestEADDescription < Test::Unit::TestCase
 		import
 		did = @ead.archdesc[:did]
 
-		assert_equal(@head, did[:head].value)
-		assert_equal(@origination, did[:origination].value) 
-		assert_equal(@unittitle, did[:unittitle].value) 
-		assert_equal(@unitid, did[:unitid].value)
-		assert_equal(@abstract, did[:abstract].value)
-		assert_equal(@physdesc, did[:physdesc].value)
-		assert_equal(@physloc, did[:physloc].value)
+		assert_equal(@head, did[:head].value.strip)
+		assert_equal(@origination, did[:origination].value.strip) 
+		assert_equal(@unittitle, did[:unittitle].value.strip) 
+		assert_equal(@unitid, did[:unitid].value.strip)
+		assert_equal(@abstract, did[:abstract].value.strip)
+		assert_equal(@physdesc, did[:physdesc].value.strip)
+		assert_equal(@physloc, did[:physloc].value.strip)
 
-		assert_equal(@unitdate, did[:unitdate].value)
+		assert_equal(@unitdate, did[:unitdate].value.strip)
 		assert_equal(@unitdatelabel, did[:unitdate].label) 
 		assert_equal(@unitdatetype, did[:unitdate].type)
 	end

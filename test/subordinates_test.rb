@@ -27,6 +27,6 @@ class TestEADSubordinates < Test::Unit::TestCase
 		dsc = @ead.archdesc[:dsc]
 
 		assert_equal(@type, dsc.type)
-		assert_equal(@head, dsc[:head].value)
+		assert_equal(@head, dsc[:head].value.strip)
 	end
 end

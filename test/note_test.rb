@@ -30,7 +30,7 @@ class TestEADNote < Test::Unit::TestCase
 		import
 		note = @ead.archdesc[:dsc][:c][:note]
 		ps = note.find_all_named(:p)
-		assert_equal(@p, ps[0].value)
-		assert_equal(@p, ps[1].value)
+		assert_equal(@p, ps[0].value.strip)
+		assert_equal(@p, ps[1].value.strip)
 	end
 end

@@ -50,9 +50,9 @@ class TestXMLStreamObjectParser < Test::Unit::TestCase
     
     assert_equal(@ead, parser.top_element)
     
-    assert_equal("1", @ead.eadheader.eadid.value)
+    assert_equal("1", @ead.eadheader.eadid.value.strip)
     assert_equal("1", @ead.eadheader.id)
-    assert_equal("Teste", @ead.eadheader.eadtitle.value)
+    assert_equal("Teste", @ead.eadheader.eadtitle.value.strip)
     
     dsc = @ead.archdesc[:dsc]
     assert(dsc[:c], "Check that the level was imported")

@@ -31,9 +31,9 @@ class TestEADSubtitle < Test::Unit::TestCase
 	def test_base_import
 		import
 		st = @ead.eadheader.filedesc.titlestmt.subtitle
-		assert_equal(@text, st.subelements[0].to_s)
-		assert_equal(@abbr, st.subelements[1].to_s)
-		assert_equal(@text, st.subelements[2].to_s)
-		assert_equal(@abbr, st.subelements[3].to_s)
+		assert_equal(@text, st.subelements[0].to_s.strip)
+		assert_equal(@abbr, st.subelements[1].to_s.strip)
+		assert_equal(@text, st.subelements[2].to_s.strip)
+		assert_equal(@abbr, st.subelements[3].to_s.strip)
 	end
 end

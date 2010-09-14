@@ -18,9 +18,10 @@ class TestEADDocument < Test::Unit::TestCase
 	end
 
 	def test_base_import
+    export
 		import
-		assert_equal("1", @ead.eadheader.eadid.value)
-		assert_equal("Teste", @ead.eadheader.eadtitle.value)
+		assert_equal("1", @ead.eadheader.eadid.value.strip)
+		assert_equal("Teste", @ead.eadheader.eadtitle.value.strip)
 	end
 
 	#def test_import_export_2
