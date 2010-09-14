@@ -1,5 +1,5 @@
 PKG_NAME = 'eadcodec'
-PKG_VERSION = '0.1.1'
+PKG_VERSION = '0.1.2'
 
 require 'rake'
 require 'rake/testtask'
@@ -29,7 +29,7 @@ spec = Gem::Specification.new do |s|
   s.name = PKG_NAME
   s.version = PKG_VERSION
   s.author = 'Pedro Côrte-Real'
-  s.email = 'pedrocr@gmail.com'
+  s.email = 'pedro@pedrocr.net'
   s.requirements << 'xmlcodec'
   s.add_dependency('xmlcodec', '>= 0.1.0')
   s.require_path = 'lib'
@@ -39,14 +39,11 @@ spec = Gem::Specification.new do |s|
   s.rdoc_options = RDOC_OPTIONS
   s.extra_rdoc_files = RDOC_EXTRA_FILES
   s.description = <<EOF
-An exporter and importer for the Encoded Archival Description XML format. See
-http://www.loc.gov/ead/ for more information about the format.
+An exporter and importer for the Encoded Archival Description XML format based on xmlcodec. See http://www.loc.gov/ead/ for more information about the format.
 EOF
 end
 
 Rake::GemPackageTask.new(spec) do |pkg|
-  pkg.need_zip = true
-  pkg.need_tar = true
 end
 
 Rake::TestTask.new do |t|
