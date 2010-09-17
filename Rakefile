@@ -18,8 +18,9 @@ PKG_FILES = FileList['lib/**/*.rb',
                      'Rakefile']
 
 RDOC_OPTIONS = ['-S', '-w 2', '-N', '-Axmlsubel_mult=XML Subelement Collection', 
-                '-Axmlsubel=XML Subelement', '-Axmlattr=XML Attribute']
-RDOC_EXTRA_FILES = ['README']
+                '-Axmlsubel=XML Subelement', '-Axmlattr=XML Attribute', 
+                '-c utf8' ]
+RDOC_EXTRA_FILES = ['README.rdoc']
 CODE_FILES = 'lib/**/*.rb'
 TEST_FILES = 'test/**/*.rb'
 
@@ -54,10 +55,10 @@ Rake::TestTask.new do |t|
 end
 
 Rake::RDocTask.new do |rd|
-  rd.main = "README"
+  rd.main = "README.rdoc"
   rd.name = :docs
   rd.rdoc_files.include(RDOC_EXTRA_FILES, CODE_FILES)
-  rd.rdoc_dir = 'web/doc'
+  rd.rdoc_dir = 'doc'
   rd.title = PKG_NAME+' API'
   rd.options = RDOC_OPTIONS
 end

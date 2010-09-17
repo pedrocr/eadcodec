@@ -1,0 +1,15 @@
+= eadcodec
+
+This is an EAD importer/exporter lib based on xmlcodec.
+
+== Usage
+
+To import a file just do:
+
+  ead = EAD::EADDocument.from_file('some_ead_file.xml')
+
+After that the ead object includes a full hierarchy representing all the content in the file. See the xmlcodec project for more details on the available API's including ways to handle creating and reading unlimited sized files with constant memory usage.
+
+== Author
+
+Pedro Côrte-Real <pedro@pedrocr.net>
