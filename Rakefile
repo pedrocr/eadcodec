@@ -27,6 +27,7 @@ TEST_FILES = 'test/**/*.rb'
 spec = Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.summary = "Importer/Exporter for the EAD XML format"
+  s.homepage = "http://github.com/pedrocr/eadcodec" 
   s.name = PKG_NAME
   s.version = PKG_VERSION
   s.author = 'Pedro Côrte-Real'
@@ -34,7 +35,6 @@ spec = Gem::Specification.new do |s|
   s.requirements << 'xmlcodec'
   s.add_dependency('xmlcodec', '>= 0.1.0')
   s.require_path = 'lib'
-  s.autorequire = 'rake'
   s.files = PKG_FILES
   s.has_rdoc = true
   s.rdoc_options = RDOC_OPTIONS
