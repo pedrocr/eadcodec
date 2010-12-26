@@ -45,8 +45,6 @@ module EADCodec
   sclass "Ref", "ref"
   sclass "LinkGrp", "linkgrp"
   sclass "Title", "title"
-
-  
   
   # Module included in classes that have paragraphs as subelements
   module WithParagraphs

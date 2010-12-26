@@ -12,3 +12,11 @@ class Date < EADElement
 	xmlattr :normal
 	xmlattr :type
 end
+
+class UnitDate < Date	
+	elname "unitdate"
+	elwithvalue
+	
+	xmlattr :datechar
+	xmlattr :label
+end
